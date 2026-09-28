@@ -5,19 +5,40 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  HomeScreenState createState()=> HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
 class HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: JournalCard(),
-          )
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    JournalCard(),
+                    SizedBox(height: 10),
+                    JournalCard(),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(color: Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(child: Text("Journals")),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.create)),
+                  InkWell(child: Text("Profile")),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
